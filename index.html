@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>taka's todoリスト</title>
+		<link rel="stylesheet" type="text/CSS" href="todo.css">
+		<script src="https://kit.fontawesome.com/b77477b1b4.js" crossorigin="anonymous"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	</head>
+	<body>
+        <header>
+            <div class="title">
+                <div class="today">
+                   <span id="day"></span> 
+                   Todoリスト
+                </div>
+            </div>
+        </header>
+        <main>
+            <div class="container">
+                <ul id="list">
+                </ul>
+                <div class="task">
+                    <label for="new" class="task_la">今日のtodo</label>
+                    <input type="text" id="new" class="task_input">
+                    <button id="add">todo追加</button><button id="reset" onclick="window.location.reload();">todoリセット</button>
+                </div>
+                <p id="timer">00:00:00</p>
+                <div class="sub">
+                    <button id="start" class="bl">START</button>
+                </div>
+            </div>
+            <div class="title">
+                <div class="today">
+                    Body管理(BMI)
+                </div>
+            </div>
+            <div class="health">
+                    <div class="left">
+                        <label for="height">身長(cm)</label>
+                        <input type="number" id="height">
+                        <label for="weight">体重(kg)</label>
+                        <input type="number" id="weight">
+                        <button id="bmi_btn">BMIを計算する</button>
+                        <p>今日のBMI：<span id="bm_value"></span></p>
+                    </div>
+            </div>
+            <div class="title">
+                <div class="today">
+                    カロリー計算(kcal)
+                </div>
+            </div>∂
+            <div class="health">
+                <div class="left">
+                    <div class="cal">
+                        <label for="carbo">炭水化物(g)</label>
+                        <input type="number" id="carbo">
+                    </div>
+                    <div class="cal">
+                        <label for="protein">たんぱく質(g)</label>
+                        <input type="number" id="protein">
+                    </div>
+                    <div class="cal">
+                        <label for="fat">脂質(g)</label>
+                        <input type="number" id="fat">
+                    </div>
+                    <div class="bm">
+                        <button id="cal_btn">カロリーを計算する</button>
+                    </div>
+                    <p>今日のカロリー:<span id="cal_value"></span></p>
+                </div>
+            </div>
+        </main>
+        <script type="text/javascript" src="todo.js"></script>
+	</body>
+</html>	
+
+

@@ -1,0 +1,172 @@
+body{
+	font-family: Quicksand, 游ゴシック体, "Yu Gothic", YuGothic, "ヒラギノ角ゴシック Pro", "Hiragino Kaku Gothic Pro", メイリオ, Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+	font-size: 17px;
+	margin:0 ;
+}
+
+header{
+	background-color: #F7F7F7;
+}
+
+.title{
+	width: 70%;
+	background-color: blue;
+	color:white;
+	margin:0 auto;
+	max-width: 600px;
+}
+
+.today{
+	padding:20px;
+}
+
+main{
+	width: 100%;
+	background-color: #F7F7F7;
+}
+
+.container{
+	width: 70%;
+	background-color: white;
+	margin:0 auto;
+	padding-bottom: 50px;
+	max-width: 600px;
+}
+
+
+#list{
+	list-style: none;
+	padding-left:0;
+	margin:0;
+}
+
+#list li{
+	padding:10px 30px;
+	border-bottom: 1px solid #999;
+
+}
+#btn{
+	float:right;
+}
+#clear{
+	float:right;
+}
+.clear{
+	display:none;
+}
+.task{
+	padding-top:30px;
+	padding-left: 30px;
+}
+
+#input_text{
+	font-size: 20px;
+}
+
+.done{
+	text-decoration: line-through solid black;
+	font-size: 20px;
+}
+
+#add{
+	margin:0 10px 0 0;
+}
+
+.task_la{
+	display: block;
+	cursor: pointer;
+}
+
+.task_input{
+	width: 150px;
+}
+
+#timer{
+	padding-left:30px;
+	background-color: black;
+	color:white;
+	padding:30px;
+	margin-top:100px;
+	font-size: 30px;
+}
+
+#start{
+	margin-right:10px;
+	padding:10px;
+	width: 100px;
+	color:white;
+}
+
+.sub{
+	padding-left:30px;
+}
+
+.bl{
+	background-color: blue;
+}
+.red{
+	background-color:red;
+}
+
+footer{
+	width: 100%;
+	background-color: #F7F7F7;
+}
+
+.fot{
+	width: 70%;
+	margin:0 auto;
+	background-color:silver;
+	color:white;
+	text-align: center;
+	padding: 15px 0 15px;
+}
+
+.health{
+	width: 70%;
+	background-color: white;
+	margin:0 auto;
+	padding-bottom: 50px;
+	max-width: 600px;
+	padding-top:20px;
+}
+.health label{
+	width: 200px;
+	display: block;
+}
+
+#bmi_btn{
+	margin-top:20px;
+	display: block;
+}
+#bm_value{
+	padding:3px;
+	
+}
+#cal_value{
+	padding:3px;
+	
+}
+
+.left{
+	padding-left: 30px;
+}
+.cal{
+	margin-top:10px;
+}
+.bm{
+	margin-top:20px;
+}
+
+@media screen and (max-width: 600px){
+
+	.container{
+		width: 95%;
+	}
+	.title{
+		width: 95%;
+	}
+
+	.health{
+		width: 95%;
+	}
