@@ -16,7 +16,7 @@ header{
 	max-width: 600px;
 }
 
-.today{
+.today1{
 	padding:20px;
 }
 
@@ -230,6 +230,15 @@ td.disabled {
 
 	.health{
 		width: 95%;
+	}
+	.calendar{
+		padding:10px 0 0 30px;
+	}
+	th,td{
+	padding:3px;
+	}
+	table{
+		font-size: 12px;
 	}
 
 }
