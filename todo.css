@@ -10,7 +10,7 @@ header{
 
 .title{
 	width: 70%;
-	background-color: blue;
+	background-color: #00CCFF;
 	color:white;
 	margin:0 auto;
 	max-width: 600px;
@@ -97,8 +97,9 @@ main{
 	background-color: black;
 	color:white;
 	padding:30px;
-	margin-top:100px;
 	font-size: 30px;
+	margin-bottom: 20px;
+	margin-top: 20px;
 }
 
 #start{
@@ -106,14 +107,26 @@ main{
 	padding:10px;
 	width: 100px;
 	color:white;
+	outline:none;
+	cursor: pointer;
+	border-style: none;
 }
+
+#start:active{
+	outline:none;
+}
+
+#start:checked{
+	outline:none;
+}
+
 
 .sub{
 	padding-left:30px;
 }
 
 .bl{
-	background-color: blue;
+	background-color:black;
 }
 .red{
 	background-color:red;
@@ -177,7 +190,7 @@ table{
 }
 
 .calendar{
-	padding:30px;
+	padding:10px;
 }
 
 thead,tfoot{
@@ -218,6 +231,106 @@ td.disabled {
 	user-select:none;
 
 }
+
+.list_add_div{
+	padding-left:30px;
+}
+
+#list_add{
+	cursor: pointer;
+}
+
+input[type="checkbox" ]{
+	margin-left:0;
+}
+
+
+/*vueのcss*/
+#app ul{
+	list-style: none;
+	padding-left: 0;
+	margin-bottom: 10px;
+}
+#app ul li{
+padding: 10px 30px;
+border-bottom: 1px solid #EEEEEE;
+position: relative;
+}
+
+.command{
+	cursor:pointer;
+}
+.delete_box{
+	position: absolute;
+	right:10px;
+	top:13px;
+}
+.done2{
+	text-decoration: line-through solid black;
+	color:#bbb;
+}
+.info{
+	color:#bbb;
+	font-size:14px;
+}
+h1{
+	margin:0;
+	padding-left:30px;
+	padding-top:10px;
+}
+form{
+	padding-left:30px;
+}
+#app input[type="text"] {
+	padding: 2px;
+  }
+.done3{
+	color:red;
+}
+
+
+
+/*いいねボタン*/  
+  .like {
+    cursor: pointer;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+  }
+    
+  .heart {
+    color: #e4e4e4;
+    user-select: none;
+	position: relative;
+	top:5px;
+  }
+  
+  .like [type="checkbox"]:checked ~ .heart {
+    animation-name: heart;
+    animation-duration: .6s;
+    animation-fill-mode: forwards;
+  }
+
+  /*グラフ*/
+  #target{
+	  width: 95%;
+	  border:1px solid black;
+	  margin:0 auto;
+  }
+  
+  @keyframes heart {
+    0% {
+      transform: scale(0);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
+      color: red;
+    }
+  }
+
 
 @media screen and (max-width: 600px){
 

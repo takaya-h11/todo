@@ -1,8 +1,9 @@
 <!doctype html>
 <html>
 	<head>
-		<meta charset="UTF-8">
-		<title>taka's todoリスト</title>
+		<meta charset="UTF- 8">
+        <title>taka's todoリスト</title>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 		<link rel="stylesheet" type="text/CSS" href="todo.css">
 		<script src="https://kit.fontawesome.com/b77477b1b4.js" crossorigin="anonymous"></script>
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -18,12 +19,31 @@
         </header>
         <main>
             <div class="container">
-                <ul id="list">
-                </ul>
-                <div class="task">
-                    <label for="new" class="task_la">今日のtodo</label>
-                    <input type="text" id="new" class="task_input">
-                    <button id="add">todo追加</button><button id="reset" onclick="window.location.reload();">todoリセット</button>
+                <div id="app">
+                    <h1>
+                        今日の積み上げ
+                        <button @click="purge">完了タスク全て削除</button>
+                        <span class="info">({{ remaining.length }}/{{ todos.length }})</span>
+                    </h1>
+                    <ul>
+                        <li v-for="(todo, index) in todos">
+                            <label class="like">
+                            <input type="checkbox" v-model="todo.isDone">
+                            <!--//todoのisdoneがtrueの時done classをつける-->
+                            <span v-bind:class="{done2: todo.isDone}">{{ todo.title }}</span>
+                            <i class="material-icons heart">thumb_up_alt</i>
+                             <span @click="deleteItem(index)" class="delete_box"><button v-bind:class="{done3: todo.isDone}" class="command"><i class="fa fa-trash-o" aria-hidden="true"></i></button></span>   
+                            </label>
+                            </li>
+                        <li v-show="!todos.length">リストなし</li>
+                    </ul>
+                    <div class="list_add_div">
+                        <i class="fa fa-plus" id="list_add" aria-hidden="true"></i>
+                    </div>
+                    <form v-on:submit.prevent="addItem" id="todo_add"> 
+                        <input type="text" v-model="newItem">
+                        <input type="submit" value="todo追加">
+                    </form>
                 </div>
                 <div class="calendar">
                     <table>
@@ -44,7 +64,6 @@
                         </tr>
                         </thead>
                         <tbody>
-                        
                         </tbody>
                         <tfoot>
                         <tr>
@@ -53,13 +72,13 @@
                         </tfoot>
                     </table>
                 </div>
-                <p id="timer">00:00:00</p>
+                <div id="timer">00:00:00</div>
                 <div class="sub">
                     <button id="start" class="bl">START</button>
                 </div>
             </div>
             <div class="title">
-                <div class="today">
+                <div class="today1">
                     Body管理(BMI)
                 </div>
             </div>
@@ -74,7 +93,7 @@
                     </div>
             </div>
             <div class="title">
-                <div class="today">
+                <div class="today1">
                     カロリー計算(kcal)
                 </div>
             </div>
@@ -93,12 +112,15 @@
                         <input type="number" id="fat">
                     </div>
                     <div class="bm">
-                        <button id="cal_btn">カロリーを計算する</button>
+                        <button id="cal_btn">カロリー計算＆PFCグラフ</button>
                     </div>
                     <p>今日のカロリー:<span id="cal_value"></span></p>
                 </div>
+                <div id="target"></div>
             </div>
         </main>
+        <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+        <script src="https://www.gstatic.com/charts/loader.js"></script>
         <script type="text/javascript" src="todo.js"></script>
 	</body>
 </html>	

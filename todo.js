@@ -1,49 +1,58 @@
-//設定すること
-//イベント　クリックファンクション　タスク追加　id=addをおした時
-//
-
-const button = document.getElementById("add");
-button.addEventListener("click", function () {
-  const input = document.getElementById("new");
-  //<li>を作り出す
-  const ul = document.getElementById("list");
-
-  ul.insertAdjacentHTML(
-    "afterbegin",
-    '<li><input type="checkbox" id="check"><span id="input_text"></span><button id="btn">終了</button><button id="delete">削除</button></li>'
-  );
-
-  const text = document.getElementById("input_text");
-  text.innerHTML = input.value;
-  input.value = "";
-
-  const donebutton = document.getElementById("btn");
-
-  //削除ボタン
-  const Deletebutton = document.getElementById("delete");
-  Deletebutton.addEventListener("click", function () {
-    const target = Deletebutton.parentNode;
-    target.remove();
+//vue.js todoリスト
+  const vm = new Vue({
+    el: '#app',
+    data: {
+      newItem:'',
+      todos:[] 
+    },
+    watch:{
+      todos: {
+        handler: function(){
+          localStorage.setItem('todos', JSON.stringify(this.todos));
+      },
+      deep: true
+      }
+    },
+    mounted: function () {
+      this.todos = JSON.parse(localStorage.getItem('todos')) || [];
+    },
+    methods:{
+      addItem: function(){
+        const item = {
+          title: this.newItem,
+          isDone: false　//未完了状態で追加
+        };
+        this.todos.push(item);
+        this.newItem = '';//入力を空文字に
+      },
+      deleteItem: function(index){
+        this.todos.splice(index,1);
+      },
+      purge: function(){
+        this.todos = this.remaining;
+      }
+   
+    },
+    computed: {
+      remaining: function() {
+        return this.todos.filter(function(todo){
+        return !todo.isDone;
+        });
+        }
+      }   
   });
 
-  const check1 = document.getElementById("check");
-  check1.addEventListener("change", function () {
-    if (this.checked) {
-      donebutton.classList.add("b-done");
-    } else {
-      donebutton.classList.remove("b-done");
-    }
+//プラスでリスト追加
+　const list_add = document.getElementById("list_add");
+  const todo_add = document.getElementById("todo_add");
+  todo_add.style.display ="none";
+  list_add.addEventListener('click', function(){
+  
+  list_add.style.display = "none";
+  todo_add.style.display = "block";
   });
 
-  //クリックイベント
-  donebutton.addEventListener("click", function () {
-    if (check1.checked) {
-      //class doneを追加する
-      text.classList.add("done");
-    }
-  });
-});
-
+//今日の日付け取得処理
 let today = new Date();
 let todayHtml =
   today.getFullYear() + "/" + (today.getMonth() + 1) + "/" + today.getDate();
@@ -122,13 +131,10 @@ calbutton.addEventListener("click", function () {
   const fat = document.getElementById("fat").value * 9;
   const cal = parseFloat(carbo) + parseFloat(protein) + parseFloat(fat);
   const result_cal = document.getElementById("cal_value");
-
   result_cal.innerHTML = cal + "kcal";
 });
 
 
-'use strict';
-console.clear();
 
 { 
   const today = new Date();
@@ -292,6 +298,49 @@ console.clear();
 
     });
     createCalendar();
-
-
 }
+
+/*グラフ*/ 
+(function() {
+  'use strict';
+  function drawChart() {
+    let target = document.getElementById('target');
+    let data;
+    let options = {
+      title: 'PFCバランス',
+      width: 280,
+      height: 200,
+      is3D:true
+    };
+    let chart = new google.visualization.PieChart(target);
+    /*data = new google.visualization.DataTable();
+    data.addColumn('string', 'Language');
+    data.addColumn('number', 'Votes');
+    data.addRow(['炭水化物', 30]);
+    data.addRow(['たんぱく質', 20]);
+    data.addRow(['脂質', 10]);*/ 
+    data = new google.visualization.arrayToDataTable([
+        ['language', 'Votes'],
+        ['炭水化物', 0],
+        ['たんぱく質', 0],
+        ['脂質', 0]
+    ]);
+    chart.draw(data, options);
+    function newchart() {
+      const carbo = document.getElementById("carbo").value * 4;
+      const protein = document.getElementById("protein").value * 4;
+      const fat = document.getElementById("fat").value * 9;
+
+      data.setValue(0, 1, carbo); // data配列の"(何行目,何列目,変更値)"を指定する
+      data.setValue(1, 1, protein); // data配列の"(何行目,何列目,変更値)"を指定する
+      data.setValue(2, 1, fat); // data配列の"(何行目,何列目,変更値)"を指定する
+
+      chart.draw(data, options); // 再描画
+    }
+    document.getElementById("cal_btn").onclick = newchart;
+
+  }
+
+  google.charts.load('current', {packages: ['corechart']});
+  google.charts.setOnLoadCallback(drawChart);
+})();
